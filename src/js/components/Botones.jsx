@@ -1,45 +1,24 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-const Botones = () => {
- 
-    const [seleccionado, setSeleccionado] = useState("gris");
-    const [cont, setCont] = useState(0);
-
-    const manejarCambio = () => {
-      
-        const siguienteCont = cont >= 3 ? 1 : cont + 1;
-        
-      
-        setCont(siguienteCont);
-
-  
-        if (siguienteCont === 1) {
-            setSeleccionado("rojo");
-        } else if (siguienteCont === 2) {
-            setSeleccionado("amarillo");
-        } else if (siguienteCont === 3) {
-            setSeleccionado("verde");
-        }
-    };
+const Botones = ({ alCambiar, luzActual, activarPurpura }) => {
 
     return (
-        <div className="text-center mt-4">
-            <p>Estado actual: <strong>{seleccionado}</strong> (Clic: {cont})</p>
-            
-        
-            <button 
-                className="btn me-3 btn-secondary" 
-                onClick={manejarCambio}
-            >
-                Cambiar Color
+        <div className="mt-4">
+            <button className="btn btn-primary" onClick={() => {
+                if (luzActual === "rojo") alCambiar("amarillo");
+                else if (luzActual === "amarillo") alCambiar("verde");
+                else alCambiar("rojo");
+            }}>
+                Siguiente
             </button>
 
-            {/* Este botón podría cambiar su estilo visual según el estado 'seleccionado' */}
+            {/* Este botón añade la luz púrpura al semáforo */}
             <button 
-                className="btn text-white" 
-                style={{ backgroundColor: 'purple' }}
+                className="btn ms-2 text-white" 
+                style={{ backgroundColor: 'purple' }} 
+                onClick={activarPurpura}
             >
-                Púrpura
+                Añadir Púrpura
             </button>
         </div>
     );
