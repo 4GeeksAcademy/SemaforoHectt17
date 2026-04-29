@@ -25,4 +25,3 @@ const Botones = ({ alCambiar, luzActual, activarPurpura }) => {
 };
 
 export default Botones;
-///
